@@ -11,14 +11,14 @@ char rx[10] = {0};
 
 int16_t twosComplementToDec16bit(uint16_t twosComp)
 {
-	if (twosComp & 0x8000) return(((twosComp ^ 0xffff) + 1) * -1);
-	else return twosComp;
+    if (twosComp & 0x8000) return(((twosComp ^ 0xffff) + 1) * -1);
+    else return twosComp;
 }
 
 int32_t twosComplementToDec32bit(uint32_t twosComp)
 {
-	if (twosComp & 0x80000000) return(((twosComp ^ 0xffffffff) + 1) * -1);
-	else return twosComp;
+    if (twosComp & 0x80000000) return(((twosComp ^ 0xffffffff) + 1) * -1);
+    else return twosComp;
 }
 
 int I2C_init()
@@ -30,13 +30,13 @@ int I2C_init()
 
 void LSM303DLHC_A_init(void)
 {
-	ioctl(altimu, I2C_SLAVE, LSM303DLHC_A_adress);
-	tx[0] = LSM303DLHC_A_CTRL_REG1;
-	tx[1] = 0b00100111; // Normal power mode, all axes enabled
-	write(altimu, tx, 2);
-	tx[0] = LSM303DLHC_A_CTRL_REG4;
-	tx[1] = 0b00001000; // Enable 12-bit resolution
-	write(altimu, tx, 2);
+    ioctl(altimu, I2C_SLAVE, LSM303DLHC_A_adress);
+    tx[0] = LSM303DLHC_A_CTRL_REG1;
+    tx[1] = 0b00100111; // Normal power mode, all axes enabled
+    write(altimu, tx, 2);
+    tx[0] = LSM303DLHC_A_CTRL_REG4;
+    tx[1] = 0b00001000; // Enable 12-bit resolution
+    write(altimu, tx, 2);
 }
 
 void LSM303DLHC_A_read(void)
